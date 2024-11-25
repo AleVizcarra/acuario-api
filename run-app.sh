@@ -1,6 +1,4 @@
 #!/bin/bash
-# Ejecutar migraciones de base de datos y seeders (si los tienes configurados)
-php artisan migrate --force
-
-# Iniciar el servidor en el puerto asignado por Railway
-php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+# Make sure this file has executable permissions, run `chmod +x run-app.sh`
+# Run migrations, process the Nginx configuration template and start Nginx
+php artisan migrate --force && node /assets/scripts/prestart.mjs /assets/nginx.template.conf  /nginx.conf && (php-fpm -y /assets/php-fpm.conf & nginx -c /nginx.conf)

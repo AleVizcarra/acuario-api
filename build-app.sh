@@ -1,13 +1,14 @@
 #!/bin/bash
-# Instalar las dependencias de PHP usando Composer
-composer install --optimize-autoloader --no-dev
+# Make sure this file has executable permissions, run `chmod +x build-app.sh`
 
-# Generar archivos de caché de configuración y rutas
+# Build assets using NPM
+npm run build
+
+# Clear cache
+php artisan optimize:clear
+
+# Cache the various components of the Laravel application
 php artisan config:cache
+php artisan event:cache
 php artisan route:cache
-
-# Crear el enlace simbólico para el almacenamiento público
-php artisan storage:link
-
-# Instalar dependencias de frontend y compilar si usas Laravel Mix o Vite (opcional)
-npm install && npm run build
+php artisan view:cache
