@@ -12,7 +12,7 @@ class Especie extends Model
     // Campos que se pueden asignar masivamente
     protected $fillable = [
         'especie',      // Nombre de la especie
-        'nombre_científico', //Nombre científico de la especie
+        'nombre_cientifico', //Nombre científico de la especie
         'descripcion',  // Descripción de la especie
         'imagen',       // URL de la imagen
     ];
